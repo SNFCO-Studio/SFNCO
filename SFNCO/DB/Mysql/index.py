@@ -28,10 +28,7 @@ class index:
             output.append(list(data[key]))
         return output
 
-    def qDelete(self, fm: str, key: str, value: str):
+    def qDelete(self, fm: str, key: str, value: str) -> None:
         cursor = self.db.cursor()
         cursor.execute("DELETE FROM " + fm + " WHERE " + key + "=\'" + value + "\'")
-        data = cursor.fetchall()
-        for key in range(len(data)):
-            output.append(list(data[key]))
-        return output
+        self.db.commit()
